@@ -3,6 +3,8 @@
     <link rel="stylesheet" type="text/css" href="/css/common.css" />
 </head>
 <body>
+@if ($header) <h3>{{ $header }}</h3> @endif
+
 @if ($data)
 <table class="dbtable">
     <tr>

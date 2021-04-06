@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DBTableController;
+use App\Http\Controllers\QueriesController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,10 +15,13 @@ use App\Http\Controllers\DBTableController;
 |
 */
 
-
-
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::get('dbtable/{name}', [DBTableController::class, 'display']);
+
+Route::get('query/orders-by-customer/{id}', [QueriesController::class, 'getOrdersByCustomer']);
+Route::get('query/amounts-for-customers', [QueriesController::class, 'getAmountsForCustomers']);
+Route::get('query/paid-orders', [QueriesController::class, 'getPaidOrders']);
+
