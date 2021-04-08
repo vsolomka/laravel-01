@@ -1,0 +1,24 @@
+body {
+    font-family: sans-serif;
+    padding: 1em;
+}
+.dbtable {
+    background: #ffe;
+    border-spacing: 0;
+    box-shadow: .1em .1em 1em .1em silver;
+}
+.dbtable th,
+.dbtable td {
+    border: thin solid silver;
+    border-width: 0 thin thin 0;
+}
+.dbtable th {
+    color: white;
+    background: black;
+    padding: 1em;
+    font-weight: normal;
+}
+.dbtable td {
+    padding: .5em 1em;
+    text-align: right;
+}
