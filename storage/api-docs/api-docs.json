@@ -1,0 +1,62 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Orders API",
+        "description": "Set of queries",
+        "contact": {
+            "email": "my@server.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/query/paid-orders": {
+            "get": {
+                "tags": [],
+                "summary": "Orders that have been already paid (HTML)",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/query/amounts-for-customers": {
+            "get": {
+                "tags": [],
+                "summary": "Amount per customer, for all customers (HTML)",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/query/orders-by-customer/{id}": {
+            "get": {
+                "tags": [],
+                "summary": "Orders list for given customer (HTML)",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of customer",
+                        "required": true,
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        }
+    },
+    "security": [
+        []
+    ]
+}
