@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Queries\PaidOrders;
 use App\Models\Queries\OrdersByCustomer;
 use App\Models\Queries\AmountsForCustomers;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class QueriesController
@@ -54,6 +55,7 @@ class QueriesController extends Controller
     public function getOrdersByCustomer(int $id = 0)
     {
         $data = new OrdersByCustomer($id);
+
         return view(
             'dbtable',
             [
@@ -66,6 +68,8 @@ class QueriesController extends Controller
     public function getAmountsForCustomers()
     {
         $data = new AmountsForCustomers();
+
+        return $data->get();
         return view(
             'dbtable',
             [
@@ -85,6 +89,12 @@ class QueriesController extends Controller
                 "header" => "Оплаченные заказы",
             ]
         );
+    }
+
+    public function getProducts()
+    {
+        return DB::table('products')->first();
+//        return DB::select("SELECT * FROM products");
     }
 }
 
