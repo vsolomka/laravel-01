@@ -69,7 +69,7 @@ class QueriesController extends Controller
     {
         $data = new AmountsForCustomers();
 
-        return $data->get();
+        //return $data->get();
         return view(
             'dbtable',
             [
@@ -77,6 +77,12 @@ class QueriesController extends Controller
                 "header" => "Выборка по сумме всех заказов на контрагентов",
             ]
         );
+    }
+
+    public function getAmountsForCustomersJSON()
+    {
+        $data = new AmountsForCustomers();
+        return $data->get();
     }
 
     public function getPaidOrders()

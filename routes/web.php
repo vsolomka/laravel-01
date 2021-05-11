@@ -23,5 +23,6 @@ Route::get('dbtable/{name}', [DBTableController::class, 'display']);
 
 Route::get('query/orders-by-customer/{id}', [QueriesController::class, 'getOrdersByCustomer']);
 Route::get('query/amounts-for-customers', [QueriesController::class, 'getAmountsForCustomers']);
+Route::get('query/amounts-for-customers-json', [QueriesController::class, 'getAmountsForCustomersJSON']);
 Route::get('query/paid-orders', [QueriesController::class, 'getPaidOrders']);
 
