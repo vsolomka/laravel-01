@@ -2,33 +2,51 @@
 
 namespace Tests\Feature;
 
-use App\Http\Controllers\QueriesController;
+use App\Http\Controllers\DBTableController;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class QueriesControllerTest extends TestCase
 {
-    protected $mock = [1, "test", "test", "test", 1, 1];
-    protected $data = [1, "test", "test", "test", 1, 1];
+
     /**
      * A basic feature test example.
      *
      * @return void
      */
-    public function test_example()
+    public function testTables()
     {
-        $client_mock = \Mockery::mock('overload:App\Models\Product');
-        $client_mock->shouldReceive('create')->with($this->data);
-//        ->andReturn($returnValue);
 
-        $obj = new QueriesController();
-        $response = $obj->getProducts();
+        $obj = new DBTableController();
+        $response = $obj->display('products');
+        $fields = array_keys(get_object_vars($response[0]));
 
-//        $response = $this->get('/query/orders-by-customer/1');
-//        var_dump($response);
+        $this->assertEquals($fields, ["Id", "SKU", "Title", "Description", "AvailableQuantity", "Price"]);
+    }
 
-        $this->assertEquals($response, $this->mock);
-//        $response->assertStatus(200);
+    public function testQueriesOrders()
+    {
+        $response = $this->get('/query/orders-by-customer/1');
+        $response->assertStatus(200);
+        $response->assertViewHasAll([
+            'data',
+            'header'
+        ]);
+
+    }
+
+    public function testQueriesPaid()
+    {
+        $response = $this->get('/query/paid-orders');
+        $response->assertStatus(200);
+        $response->assertSee('Оплаченные заказы');
+    }
+
+    public function testQueriesAmounts()
+    {
+        $response = $this->get('/query/amounts-for-customers-json');
+        $response->assertStatus(200);
+        $response->assertSeeInOrder(['Id', 'Name', 'Amount']);
     }
 }

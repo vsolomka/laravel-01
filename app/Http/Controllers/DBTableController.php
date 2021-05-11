@@ -17,6 +17,7 @@ class DBTableController extends Controller
         } else {
             $data = false;
         }
-        return view('dbtable', ["data" => $data]);
+//        return view('dbtable', ["data" => $data]);
+        return $data;
     }
 }
